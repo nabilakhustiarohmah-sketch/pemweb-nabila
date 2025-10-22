@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NABILA JANGAN TERLALU OVERSHARING YA</title>
+</head>
+<body>
+    <h1>DATA KEUANGAN NABILA 22 - 28 OKTOBER 2025</h1>
+
+    <label for="tanggal">tanggal:</label>
+    <input type="text" id="tanggal" placeholder="Masukkan tanggal"><br><br>
+
+    <label for="pengeluaran">Pengeluaran:</label>
+    <input type="text" id="pengeluaran" placeholder="Masukkan nama barang"><br><br>
+
+    <label for="jumlah">Jumlah (Rp):</label>
+    <input type="number" id="jumlah" placeholder="Masukkan jumlah uang"><br><br>
+
+    <button onclick="tambahdata()">Tambah</button>
+
+    <script>
+        let no = 1;
+
+        function tambahdata() {
+            let tanggal = document.getElementById("tanggal").value;
+            let pengeluaran = document.getElementById("pengeluaran").value;
+            let jumlah = document.getElementById("jumlah").value;
+
+            // validasi input kosong
+            if ( pengeluaran === "" || jumlah === "" || tanggal=== "") {
+                alert("Mohon isi semua data");
+                return;
+            }
+
+            console.log("Data masuk:", pengeluaran, jumlah, tanggal);
+
+            // ambil tabel dan tambahkan baris
+            let tabel = document.getElementById("tabelPengeluaran").getElementsByTagName('tbody')[0];
+            let barisBaru = tabel.insertRow();
+            
+
+            // tambahkan kolom
+            let kolomNo = barisBaru.insertCell(0);
+            let kolomTanggal = barisBaru.insertCell(1);
+            let kolomPengeluaran = barisBaru.insertCell(2);
+            let kolomJumlah = barisBaru.insertCell(3);
+
+            // isi kolom dengan data input
+            kolomNo.innerHTML = no++;
+            kolomTanggal.innerHTML = tanggal;
+            kolomPengeluaran.innerHTML = pengeluaran;
+            kolomJumlah.innerHTML = "Rp " + parseInt(jumlah).toLocaleString();
+
+            // kosongkan input setelah ditambahkan
+            document.getElementById("tanggal").value = "";
+            document.getElementById("pengeluaran").value = "";
+            document.getElementById("jumlah").value = "";
+        }
+    </script>
+
+    <h2>DAFTAR PENGELUARAN</h2>
+    <table border="1" cellpadding="5" id="tabelPengeluaran">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Pengeluaran</th>
+                <th>Jumlah</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Baris data akan muncul di sini -->
+        </tbody>
+    </table>
+</body>
+</html>
