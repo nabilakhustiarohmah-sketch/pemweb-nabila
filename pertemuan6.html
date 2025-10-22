@@ -1,0 +1,44 @@
+
+<html>
+<head>
+    <title>Status Kelulusan</title>
+</head>
+<body>
+    <h1>Status Kelulusan</h1>
+
+    <label>Nilai Teori:</label><br>
+    <input type="number" id="nilaiteori" placeholder="Masukkan nilai teori"><br>
+
+    <label>Nilai Praktik:</label><br>
+    <input type="number" id="nilaipraktik" placeholder="Masukkan nilai praktik"><br><br>
+
+    <button onclick="cekKelulusan()">Cek Kelulusan</button>
+
+    <div id="hasil" style="margin-top: 15px; font-weight: bold;"></div>
+
+    <script>
+        function cekKelulusan() {
+            // ambil nilai dari input
+            let nilaiteori = parseFloat(document.getElementById("nilaiteori").value);
+            let nilaipraktik = parseFloat(document.getElementById("nilaipraktik").value);
+            
+            // validasi input
+            if (isNaN(nilaiteori) || isNaN(nilaipraktik)) {
+                document.getElementById("hasil").innerHTML = "Harap isi kedua nilai!";
+                return;
+            }
+
+            // tentukan status kelulusan
+            let hasil = "";
+            if (nilaiteori >= 70 && nilaipraktik >= 70) {
+                hasil = "LULUS ✅";
+            } else {
+                hasil = "TIDAK LULUS ❌";
+            }
+
+            // tampilkan hasil
+            document.getElementById("hasil").innerHTML = "Status: " + hasil;
+        }
+    </script>
+</body>
+</html>
